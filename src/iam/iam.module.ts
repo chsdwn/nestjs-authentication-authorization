@@ -5,7 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as session from 'express-session';
 import * as passport from 'passport';
-import * as createRedisStore from 'connect-redis';
+import RedisStore from 'connect-redis';
 
 import { ApiKey } from 'src/users/api-keys/entities';
 import { User } from 'src/users/entities';
@@ -73,7 +73,6 @@ import Redis from 'ioredis';
 })
 export class IamModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    const RedisStore = createRedisStore(session);
     consumer
       .apply(
         session({
